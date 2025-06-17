@@ -1,5 +1,7 @@
 import React from 'react'
 
+// 04:05
+
 const Hero = () => {
   return (
         <section className="bg-gray-200 px-6 py-16 text-center w-full">

@@ -1,34 +1,29 @@
-// import React from "react";
-// import {
-//   Dialog,
-//   DialogContent,
-//   DialogHeader,
-//   DialogTitle,
-//   DialogTrigger,
-// } from "@/components/ui/dialog";
-// import Button from "./Button";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
 
-// interface Props {
-//   children: React.ReactNode;
-// }
+interface Props {
+  children: React.ReactNode;
+}
 
-// const Modal = ({ children }: Props) => {
-//   return (
-//     <Dialog>
-//       <DialogTrigger>
-//         <Button className="default-btn max-sm:text-[12px] max-sm:px-4 my-6">
-//           Click to add a review
-//         </Button>
-//       </DialogTrigger>
-//       <DialogContent>
-//         <DialogHeader>
-//           <DialogTitle className="hidden">Are you absolutely sure?</DialogTitle>
-//         </DialogHeader>
+import React from 'react'
 
-//         {children}
-//       </DialogContent>
-//     </Dialog>
-//   );
-// };
+const Modal = ({children}:Props) => {
+    return (
+        <Dialog>
+            <DialogTrigger className="default-btn max-sm:text-[12px] max-sm:px-4 my-6">Click to add a review </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle className="hidden">Are you absolutely sure?</DialogTitle>
+                </DialogHeader>
+                {children}
+            </DialogContent>
+        </Dialog>
+    )
+}
 
-// export default Modal;
+export default Modal
