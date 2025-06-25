@@ -1,6 +1,10 @@
 import React from 'react'
 import CategoryCard from './CategoryCard'
-const CategorySection = () => {
+import { getCategories } from '@/lib/api'
+import { category } from '@/lib/type';
+const CategorySection = async() => {
+  const categories = await getCategories();
+  console.log(categories);
   return (
     <section className='main-max-width padding-x mx-auto'>
         <h2 className="my-9 text-center text-xl font-bold text-gray-800 ">
@@ -8,12 +12,7 @@ const CategorySection = () => {
         </h2>
 
         <div className=' flex flex-wrap gap-8 justify-center'>
-            <CategoryCard/>
-            <CategoryCard/>
-            <CategoryCard/>
-            <CategoryCard/>
-            <CategoryCard/>
-            <CategoryCard/>
+            {categories.map((cat:category) => <CategoryCard key={cat.id} cat={cat}/>)}
         </div>
     </section>
   )

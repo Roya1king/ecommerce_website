@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { FaCartShopping } from "react-icons/fa6";
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { signOutUser } from '@/lib/actions';
 interface Props {
   mobile?: boolean
   loggedInUser?: {
@@ -35,7 +36,7 @@ const NavItems = ({ mobile, loggedInUser }: Props) => {
               {loggedInUser.name}
             </Link>
 
-            <button className="nav-btn">Logout</button>
+            <button onClick={signOutUser} className="nav-btn">Logout</button>
           </>
           :
           <Link href="/signin" className="nav-btn">Login</Link>

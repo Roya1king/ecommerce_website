@@ -9,7 +9,15 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-const MobileNavBar = () => {
+interface Props {
+  loggedInUser?: {
+    name: string;
+    email: string;
+    image: string;
+  };
+}
+
+const MobileNavBar = ({loggedInUser}:Props) => {
   return (
     <Sheet>
       <SheetTrigger>
@@ -22,7 +30,7 @@ const MobileNavBar = () => {
             Shoppit
           </SheetTitle>
         </SheetHeader>
-        <NavItems mobile />
+        <NavItems mobile loggedInUser={loggedInUser} />
         {/* <SheetClose className="overflow-y-auto">
           <NavItems mobile />
         </SheetClose> */}

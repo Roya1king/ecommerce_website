@@ -48,7 +48,7 @@ const NavBar = ({ loggedInUser }: NavBarProps) => {
           </div>
 
           <div className="max-md:block hidden">
-            <MobileNavBar />
+            <MobileNavBar loggedInUser={loggedInUser} />
           </div>
         </div>
       </nav>
