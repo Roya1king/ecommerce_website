@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const BASE_URL = "http://127.0.1:8000";
 
-const api=axios.create({
+export const api=axios.create({
   baseURL: "http://127.0.0.1:8000"
 });
 
@@ -75,6 +75,20 @@ export async function getProducts() {
   catch (error:unknown) {
     if (error instanceof Error) {
       console.error("Error fetching products:", error.message);
+    } else {
+      console.error("An unexpected error occurred:", error);
+    }
+  }
+}
+
+export async function getProduct(slug: string) {
+  try{
+    const response = await api.get(`/products/${slug}`);
+    return response.data;
+  }
+  catch (error:unknown) {
+    if (error instanceof Error) {
+      console.error("Error fetching product:", error.message);
     } else {
       console.error("An unexpected error occurred:", error);
     }

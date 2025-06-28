@@ -2,9 +2,11 @@ import React from 'react'
 import Image from "next/image"
 import { Product } from '@/lib/type'
 import { BASE_URL } from '@/lib/api'
+import LINK from 'next/link'
 
 const ProductCard = ({ prod }: { prod: Product }) => {
   return (
+    <LINK href={`/products/${prod.slug}`} className="no-underline text-inherit">
     <div className="w-[260px] h-[360px] rounded-lg shadow-md bg-white flex flex-col items-center gap-3 px-4 py-5 transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer">
       
       {/* Product Image */}
@@ -28,6 +30,7 @@ const ProductCard = ({ prod }: { prod: Product }) => {
         ${prod.price}
       </p>
     </div>
+    </LINK>
   )
 }
 

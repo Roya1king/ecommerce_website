@@ -4,11 +4,15 @@ import { getProducts } from "@/lib/api";
 import { Product } from "@/lib/type";
 
 interface Props{
-  title?:string
+  title?:string,
+  detailPage?:boolean,
+  similar_products?:Product[],
 }
 
-const ProductSection = async({title}:Props) => {
-  const products=await getProducts();
+const ProductSection = async({title, similar_products, detailPage}:Props) => {
+
+  const products=detailPage ? similar_products : await getProducts();
+
   console.log(products);
   return (
     <section className="main-max-width padding-x mx-auto my-16">

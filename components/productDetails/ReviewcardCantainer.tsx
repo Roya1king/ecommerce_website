@@ -1,11 +1,18 @@
 import React from 'react'
-import ReviewCard from './ReviewCard'
+import { ProductDetail, Review } from '@/lib/type'
+import { auth } from '@/auth';
+import Collapse from '../uiComponents/Collapse';
 
-const ReviewCardContainer = () => {
+const ReviewCardContainer = async({reviews,product}:{reviews:Review[],product:ProductDetail}) => {
+  const session = await auth();
+  const user=session?.user;
+
+
   return (
     <div className="main-max-width mx-auto padding-x ">
-      <h4 className="my-4 font-semibold">Reviews (3)</h4>
-      <ReviewCard />
+      <Collapse reviews={reviews} loggedInUser={user} product={product} />
+
+      
     </div>
   )
 }

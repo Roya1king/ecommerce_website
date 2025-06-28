@@ -4,6 +4,12 @@ import CategoryBtn from '@/components/category/CategoryBtn'
 import { getCategories, getCategory } from '@/lib/api'
 import { category, Product } from '@/lib/type';
 import ProductCard from '@/components/home/ProductCard';
+
+export async function generateStaticParams() {
+  const categories = await getCategories();
+  return categories.map((cat: category) => ({ slug: cat.slug }));
+}
+
 const CategoryPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
   const { slug } = await params;
