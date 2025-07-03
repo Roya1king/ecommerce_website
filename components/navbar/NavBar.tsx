@@ -8,9 +8,9 @@ import SearchButton from './SearchButton'
 
 // Define the User interface to type the props
 interface User {
-  name: string;
-  email: string;
-  image: string;
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
 }
 
 interface NavBarProps {

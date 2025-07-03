@@ -19,14 +19,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         async function getCartItemsCount() {
-            if (!cartCode) return;  
+            if (!cartCode) return;
 
             try {
                 const response = await api.get(`get_cart_stat?cart_code=${cartCode}`);
                 console.log("Cart items count response:", response.data);
-                setCartItemsCount(response.data.num_of_items ?? 0); 
+                setCartItemsCount(response.data.num_of_items ?? 0);
             } catch (error: unknown) {
-                if (error instanceof Error) {
+                // Use type assertion to access response property
+                if ((error as any)?.response?.status === 404) {
+                    // Cart doesn't exist yet; treat as empty cart
+                    console.warn("Cart not found, defaulting to 0 items");
+                    setCartItemsCount(0);
+                } else if (error instanceof Error) {
                     console.error("Error fetching cart items count:", error.message);
                 } else {
                     console.error("An unexpected error occurred:", error);

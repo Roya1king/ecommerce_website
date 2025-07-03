@@ -1,4 +1,3 @@
-
 export interface category {
     id:number;
     name:string;
@@ -54,4 +53,46 @@ export interface ProductDetail{
     good_review:number;
     very_good_review:number;
     excellent_review:number;
+}
+
+export interface CartItemType {
+    id: number;
+    product: Product;
+    quantity: number;
+    subtotal: number;
+}
+
+export interface CartType{
+    id: number;
+    cart_code: string;
+    cartitems: CartItemType[];
+    cart_total: number;
+}
+
+export interface OrderItemType{
+    id: number;
+    product: Product;
+}
+
+export interface OrderType{
+    id: number;
+    stripe_checkout_id:string;
+    amount: number;
+    items: OrderItemType[];
+    status : string;
+    created_at:string;
+}
+
+export interface WishlistType{
+    id: number;
+    product: Product;
+}
+
+export interface AddressType{
+    id:number;
+    street:string;
+    city:string;
+    state:string;
+    phone:string;
+
 }

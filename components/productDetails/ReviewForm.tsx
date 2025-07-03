@@ -14,6 +14,14 @@ interface Props {
     review: string;
 }
 
+const ratings = [
+    { rating: 1, review: "Poor" },
+    { rating: 2, review: "Fair" },
+    { rating: 3, review: "Good" },
+    { rating: 4, review: "Very Good" },
+    { rating: 5, review: "Excellent" },
+];
+
 const ReviewForm = ({ product, loggedInUserEmail, review, updateReviewForm }:
     { product: ProductDetail, loggedInUserEmail: string | undefined | null, review: Review | undefined, updateReviewForm?: boolean }) => {
 
@@ -42,13 +50,7 @@ const ReviewForm = ({ product, loggedInUserEmail, review, updateReviewForm }:
         setHoverreview(clickedReview);
     }
 
-    const ratings = [
-        { rating: 1, review: "Poor" },
-        { rating: 2, review: "Fair" },
-        { rating: 3, review: "Good" },
-        { rating: 4, review: "Very Good" },
-        { rating: 5, review: "Excellent" },
-    ];
+
 
     useEffect(() => {
         if (!review) return; // Add this guard

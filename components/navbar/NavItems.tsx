@@ -8,15 +8,15 @@ import { useCart } from '@/context/CartContext';
 interface Props {
   mobile?: boolean
   loggedInUser?: {
-    name: string;
-    email: string;
-    image: string;
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
   }
 }
 
 const NavItems = ({ mobile, loggedInUser }: Props) => {
 
-  const {cartItemsCount}= useCart();
+  const {cartCode,cartItemsCount}= useCart();
 
   return (
     <div className={cn("flex items-center justify-center gap-6", mobile ? "flex-col" : "flex-row ")}>
@@ -26,7 +26,7 @@ const NavItems = ({ mobile, loggedInUser }: Props) => {
           <>
             <div className="w-[50px] h-[50px] rounded-full overflow-hidden border-2 border-black shadow-md">
               <Image
-                src={loggedInUser.image}
+                src={loggedInUser.image ?? "/default-profile.png"}
                 alt="profile"
                 width={50}
                 height={50}
@@ -46,10 +46,12 @@ const NavItems = ({ mobile, loggedInUser }: Props) => {
           <Link href="/signin" className="nav-btn">Login</Link>
       }
 
-      <div className="relative flex items-center h-[60px] w-[60px] justify-center cursor-pointer">
-        <FaCartShopping className="text-4xl" />
-        {cartItemsCount>0 && <span className="absolute top-0 right-0 px-2 py-1 bg-black rounded-full text-white">{cartItemsCount}</span>}
-      </div>
+      <Link href={`/cart/${cartCode}`} >
+        <div className="relative flex items-center h-[60px] w-[60px] justify-center cursor-pointer">
+          <FaCartShopping className="text-4xl" />
+          {cartItemsCount>0 && <span className="absolute top-0 right-0 px-2 py-1 bg-black rounded-full text-white">{cartItemsCount}</span>}
+        </div>
+      </Link>
 
     </div>
   );

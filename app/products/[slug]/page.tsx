@@ -6,15 +6,24 @@ import ReviewCardContainer from "@/components/productDetails/ReviewcardCantainer
 import ReviewForm from "@/components/productDetails/ReviewForm";
 import Modal from "@/components/uiComponents/Modal";
 import { getProduct } from "@/lib/api";
-import { ProductDetail } from "@/lib/type";
+import { Product, ProductDetail } from "@/lib/type";
 import { cn } from "@/lib/utils";
 import { Star } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } =await params;
+  const product : Product= await getProduct(slug);
 
-const ProductPage = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = params;
+  return {
+    title: `${product.name} - Shoppit`,
+  };
+}
+
+
+const ProductPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } =await params;
   const product: ProductDetail = await getProduct(slug);
   const avreageRating = product.rating?.average_rating ?? 0;
 
@@ -32,7 +41,7 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <>
-      <ProductInfo product={product} />
+      <ProductInfo product={product} loggedInUserEmail={loggedInUserEmail}/>
 
       <div className="main-max-width padding-x mx-auto ">
         <h3 className="font-semibold text-xl text-center my-6 text-gray-800">
