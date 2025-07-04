@@ -3,14 +3,13 @@ import React, {  useEffect, useState } from 'react'
 import Image from "next/image"
 import Button from '../uiComponents/Button'
 import { ProductDetail } from '@/lib/type'
-import { api, BASE_URL } from '@/lib/api'
+import { api } from '@/lib/api'
 import { addToCartAction } from '@/lib/actions'
 import { toast } from 'react-toastify'
 import { useCart } from '@/context/CartContext'
 import WishlistToolTrip from '../uiComponents/WishlistToolTrip'
 
 const ProductInfo = ({ product, loggedInUserEmail }: { product: ProductDetail, loggedInUserEmail: string | null | undefined }) => {
-  console.log(BASE_URL + product.image);
   const { cartCode, setCartItemsCount } = useCart();
   const [addToCartLoader, setAddToCartLoader] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
@@ -119,7 +118,7 @@ const ProductInfo = ({ product, loggedInUserEmail }: { product: ProductDetail, l
 
       <div className="w-[350px] h-[400px] relative overflow-hidden rounded-lg shadow-sm border border-gray-200">
         <Image
-          src={BASE_URL + product.image}
+          src={ product.image}
           alt="gaming"
           fill
           className="object-cover rounded-lg"

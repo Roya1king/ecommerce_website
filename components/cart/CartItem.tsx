@@ -4,7 +4,6 @@ import Image from "next/image"
 import { Minus, Plus } from 'lucide-react'
 import Button from '@/components/uiComponents/Button'
 import { CartItemType } from '@/lib/type'
-import { BASE_URL } from '@/lib/api'
 import { useCart } from '@/context/CartContext'
 import { cartItemDeleteAction, cartItemUpdateAction } from '@/lib/actions'
 import { toast } from 'react-toastify'
@@ -84,7 +83,7 @@ const CartItem = ({cartitem}:{cartitem:CartItemType}) => {
         {/* Product Image */}
         <div className="relative overflow-hidden w-[70px] h-[70px] rounded-lg border border-gray-200">
           <Image
-            src={BASE_URL + cartitem.product.image}
+            src={ cartitem.product.image}
             alt="cartitem-img"
             className="object-cover"
             fill

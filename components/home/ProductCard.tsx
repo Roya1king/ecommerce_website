@@ -1,7 +1,6 @@
 import React from 'react'
 import Image from "next/image"
 import { Product } from '@/lib/type'
-import { BASE_URL } from '@/lib/api'
 import LINK from 'next/link'
 
 const ProductCard = ({ prod }: { prod: Product }) => {
@@ -12,7 +11,7 @@ const ProductCard = ({ prod }: { prod: Product }) => {
       {/* Product Image */}
       <div className="w-[200px] h-[200px] rounded-md overflow-hidden flex items-center justify-center bg-gray-100">
         <Image
-          src={BASE_URL + prod.image}
+          src={prod.image}
           width={200}
           height={200}
           alt="thumbnail"

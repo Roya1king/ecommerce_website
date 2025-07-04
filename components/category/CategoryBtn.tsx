@@ -2,7 +2,6 @@
 import React from 'react'
 import Image from "next/image"
 import { category } from '@/lib/type'
-import { BASE_URL } from '@/lib/api'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
@@ -21,7 +20,7 @@ const CategoryBtn = ({ cat }: { cat: category }) => {
         {/* Icon Container */}
         <div className="w-[40px] h-[40px] bg-white rounded-full overflow-hidden flex items-center justify-center shadow-sm">
           <Image
-            src={BASE_URL + cat.image}
+            src={cat.image}
             width={30}
             height={30}
             className="object-contain"
