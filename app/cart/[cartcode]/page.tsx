@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 }
 
 
-const CartItemPage = async ({ params }: { params: Promise<{ cartcode: string }> }) => {
+const CartItemPage = async ({ params }: { params: { cartcode: string } }) => {
 
-    const { cartcode } = await params;
+    const { cartcode } =  params;
 
     const cart: CartType = await getCart(cartcode);
 

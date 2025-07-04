@@ -9,7 +9,7 @@ export const api = axios.create({
 
 export async function getExistingUser(email: string) {
   try {
-    const response = await api.get(`existing_user/${email}/`);
+    const response = await api.get(`existing_user/${email}`);
     return response.data;
   } catch (error: unknown) {
     type AxiosErrorWithResponse = {
@@ -90,6 +90,7 @@ export async function getProducts() {
 export async function getProduct(slug: string) {
   try {
     const response = await api.get(`products/${slug}/`);
+    console.log("cart   ",response.data);
     return response.data;
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -102,7 +103,7 @@ export async function getProduct(slug: string) {
 
 export async function getCart(cart_code: string) {
   try {
-    const response = await api.get(`get_cart/${cart_code}/`);
+    const response = await api.get(`get_cart/${cart_code}`);
     return response.data;
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -119,7 +120,7 @@ export async function getCart(cart_code: string) {
 export async function productSearch(searchInput: string | null | undefined) {
   if (searchInput) {
     try {
-      const response = await api.get(`search/?query=${searchInput}`);
+      const response = await api.get(`search?query=${searchInput}`);
       return response.data;
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -147,7 +148,7 @@ export async function intiatePayment(paymentInfo: { email: string | null | undef
 export async function getOrders(email: string | null | undefined) {
   if (email) {
     try {
-      const response = await api.get("get_orders/", {
+      const response = await api.get("get_orders", {
         params: { email },
       });
       return response.data;
@@ -164,7 +165,7 @@ export async function getOrders(email: string | null | undefined) {
 export async function getWishlist(email: string | null | undefined) {
   if (email) {
     try {
-      const response = await api.get("my_wishlists/", {
+      const response = await api.get("my_wishlists", {
         params: { email },
       });
       return response.data;
@@ -200,7 +201,7 @@ export async function addAddress(addressData: {
 export async function getAddress(email: string | null | undefined) {
   if (email) {
     try {
-      const response = await api.get("get_address/", {
+      const response = await api.get("get_address", {
         params: { email },
       });
       return response.data;
