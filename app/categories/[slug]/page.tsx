@@ -5,8 +5,8 @@ import { getCategories, getCategory } from '@/lib/api'
 import { category, Product } from '@/lib/type';
 import ProductCard from '@/components/home/ProductCard';
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const category : category= await getCategory(slug);
   return {
     title: `${category.name} - Shoppit`,
@@ -19,9 +19,9 @@ export async function generateStaticParams() {
   return categories.map((cat: category) => ({ slug: cat.slug }));
 }
 
-const CategoryPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+const CategoryPage = async ({ params }: { params: { slug: string } }) => {
 
-  const { slug } = await params;
+  const { slug } = params;
 
   const [categories, category] = await Promise.all([
     getCategories(),

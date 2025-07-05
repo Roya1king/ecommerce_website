@@ -8,12 +8,18 @@ import React from 'react'
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'CartItems - Shoppit',
+};
+
+interface PageProps {
+  params: {
+    cartcode: string;
+  };
 }
 
 
-const CartItemPage = async ({ params }: { params: { cartcode: string } }) => {
+const CartItemPage = async ({ params }: PageProps) => {
 
-    const { cartcode } =  params;
+    const { cartcode } = params;
 
     const cart: CartType = await getCart(cartcode);
 

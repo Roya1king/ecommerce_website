@@ -3,8 +3,8 @@ import { productSearch } from '@/lib/api'
 import { Product } from '@/lib/type'
 import React from 'react'
 
-const SearchPage = async ({searchParams}:{searchParams:Promise<{query:string | null |undefined}>}) => {
-  const {query} = await searchParams
+const SearchPage = async ({searchParams}:{searchParams:{query:string | null |undefined}}) => {
+  const {query} = searchParams
   const searchResults= query ?await productSearch(query) : []
   console.log("Search Results:", searchResults)
   return (

@@ -12,8 +12,8 @@ import { Star } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } =await params;
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const { slug } =params;
   const product : Product= await getProduct(slug);
 
   return {
@@ -22,8 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 
-const ProductPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
-  const { slug } =await params;
+const ProductPage = async ({ params }: { params: { slug: string }}) => {
+  const { slug } = params;
   const product: ProductDetail = await getProduct(slug);
   const avreageRating = product.rating?.average_rating ?? 0;
 
